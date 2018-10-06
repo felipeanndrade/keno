@@ -45,8 +45,8 @@ To run the program you'll need a `.dat` bet file, wich have this format
 ---------------
 Lines | Representing
 ----- | -----------
-1500.0 | The player’s initial credit ( IC ), expressed as a real value.
-3	   | The number of rounds ( NR ) the game should run, represented by an integer.
+1500.0 | The player’s initial credit, expressed as a real value.
+3	   | The number of rounds the game should run, represented by an integer.
 21 12 64 | A set of up to 15 unique numbers in any order, separated by at least one white-space.
 
 Any other representation for will be considered a **invalid** bet file.
