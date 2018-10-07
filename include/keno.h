@@ -17,10 +17,12 @@ class KenoBet
 	private:
 		set_of_numbers_type m_spots; //<! The player's bet.
 		cash_type m_wage; 			 //<! The player's wage.
-
+	
 	public:
+		size_t rounds; 		 //<! Number of times to play.
+
 		//! Creates an empty Keno bet.
-		KenoBet() : m_wage(0)
+		KenoBet() : m_wage(0), rounds(1)
 		{ /* empty */ };
 
 		/*! 
@@ -28,15 +30,13 @@ class KenoBet
 		 * @param spot_ The number we wish to include in the bet.
 		 * @return True if number chosen is successfully inserted; False otherwise. 
 		 */
-
 		bool add_number( number_type spot_ );
 
 		/*! 
 		 * @brief Sets the amount of money the player is betting.
 		 * @param wage_ The wage.
-		 * @return True if we have a wage above zero; false otherwise. 
-		 */
-		bool set_wage( cash_type wage_ );
+		 */ 
+		void set_wage( cash_type wage_ );
 
 		//!
 		// @brief Resets a bet to an empty state.
