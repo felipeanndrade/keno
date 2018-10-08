@@ -23,17 +23,11 @@ And clone this repository, using `git clone <this repo>`
 # Compiling
 
 To compile this project move to keno directory and make a `build` directory;
-```
-mkdir build
-```
+` mkdir build `
 Create a makefile using `cmake`, to manage and build the project;
-```
-cmake ..
-```
+` cmake .. `
 Then, build the project;
-```
-make
-```
+` make `
 
 A bin file called `keno` will be created.
  
