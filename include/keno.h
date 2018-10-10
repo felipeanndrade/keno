@@ -1,6 +1,6 @@
 /*!
  * @file keno.h
- * @author Felipe da Silva Andrade & Marcos Antonio Junior
+ * @author Felipe da Silva Andrade & Marcos A. Cavalcanti Junior
  */
 
 #ifndef _KENO_H_
@@ -18,6 +18,23 @@ class KenoBet
 		set_of_numbers_type m_spots; //<! The player's bet.
 		cash_type m_wage; 			 //<! The player's wage.
 
+		/*! 
+		 * @brief Apply a partition to the slice [left, right) of spots vector. Used in qsort_spots() function.
+		 * @param spots_vector The spots vector member itself.
+		 * @param left Left index of the partition interval.
+		 * @param right Right index of the partition interval.
+		 * @return Index of the element just past to the pivot element of partition.
+		 */
+		int spots_partition( set_of_numbers_type & spots_vector, int left , int right );
+
+		/*! 
+		 * @brief Apply the QuickSort algorithm to the m_spots vector.
+		 * @param spots_vector The spots vector member itself.
+		 * @param left Left index of the partition interval.
+		 * @param right Right index of the partition interval.
+		 */
+		void spots_qsort( set_of_numbers_type & spots_vector, int left , int right );
+
 	public:
 		//! Creates an empty Keno bet.
 		KenoBet() : m_wage(0)
@@ -28,7 +45,6 @@ class KenoBet
 		 * @param spot_ The number we wish to include in the bet.
 		 * @return True if number chosen is successfully inserted; False otherwise. 
 		 */
-
 		bool add_number( number_type spot_ );
 
 		/*! 
@@ -59,8 +75,7 @@ class KenoBet
 		 * @param hits_ List of hits randomly chosen by the computer.
 		 * @return An vector with the list of hits. 
 		 */
-		set_of_numbers_type
-		get_hits( const set_of_numbers_type & hits_ ) const;
+		set_of_numbers_type get_hits( const set_of_numbers_type & hits_ ) const;
 
 		/*!
 		 * @brief Return a vector < spot_type > with the spots the player has picked so far.

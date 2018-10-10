@@ -11,7 +11,8 @@ include_directories( include )
 
 add_library(KENO STATIC "src/keno.cpp")
 
-target_compile_features(KENO PUBLIC cxx_std_11)
+#target_compile_features(KENO PUBLIC cxx_std_11)
+set (CMAKE_CXX_STANDARD 11)
 
 install(TARGETS KENO ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR}/lib)
 
@@ -21,7 +22,7 @@ add_executable(keno "src/driver_keno.cpp")
 
 target_link_libraries(keno PRIVATE KENO )
 
-target_compile_features(keno PUBLIC cxx_std_11)
+#target_compile_features(keno PUBLIC cxx_std_11)
 
 #add_executable(run_tests "test/test_app.cpp")
 

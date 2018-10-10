@@ -62,4 +62,4 @@ At the end of the game will be showed a **sumary** of the money that you spent, 
 
 # Authorship
 
-This project has been developed by [Felipe Andrade](https://github.com/felpsisonfire) & [Marcos Antonio Junior](https://github.com/marcosacj) to the Programming Language I course, from Information Technology bachelor degree of Federal University of Rio Grande do Norte.
+This project has been developed by [Felipe Andrade](https://github.com/felpsisonfire) & [Marcos A. Cavalcanti Junior](https://github.com/marcosacj) to the Programming Language I course, from Information Technology bachelor degree of Federal University of Rio Grande do Norte.
