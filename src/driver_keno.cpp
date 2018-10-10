@@ -22,9 +22,13 @@ int main(int argc, char **argv)
 	std::ofstream bet_file;
 	bet_file.open(argv[1], "r");
 
+	
+	
 	// Initialize a object
 	KenoBet myGame;
 
+	set_of_numbers_type spots = myGame.get_spots();
+	
 	// std::stoi in this case must need a variable to be 'stremmed'
 	std::cout << ">>> Preparing to read the bet file [" << std::stoi(argv[1]) << "], please wait...\n";
 	std::cout << setw(40) << setfill('-') << "" << std::endl;
@@ -40,7 +44,12 @@ int main(int argc, char **argv)
 			  << " rounds, waging $" << /* Usar alguma funcao de probabilidade?? myGame.get_wage()/myGame.size */ 
 			  << " per round.\n";
 	std::cout << "\n\n\n";
-	std::cout << "\t Your bet has 3 numbers. They are: [" <<  myGame.get_spots() << "]\n";		
+	std::cout << "\t Your bet has 3 numbers. They are: [";
+  	for(auto i{0u}; i < spots.size() -1; ++i )
+	{
+		std::cout << spots[i] << " ";
+	}
+	std::cout<< "]\n";		
 
 	// Run the game how many times the player expecifies in bet file
 	for( auto i{0u}; i < myGame.size; ++i) // Check the sintax to access 'myGame.size'
