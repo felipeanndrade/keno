@@ -22,11 +22,10 @@ int main(int argc, char **argv)
 	std::ofstream bet_file;
 	bet_file.open(argv[1], "r");
 
-	
-	
 	// Initialize a object
 	KenoBet myGame;
 
+	// Vector to print the spots 
 	set_of_numbers_type spots = myGame.get_spots();
 	
 	// std::stoi in this case must need a variable to be 'stremmed'
@@ -79,7 +78,6 @@ int main(int argc, char **argv)
 		{
 		}	
 	}
-	
 
 	bet_file.close();
 

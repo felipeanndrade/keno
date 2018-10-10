@@ -10,6 +10,7 @@
 
 using number_type = unsigned short int; //<! data type for a keno hit
 using cash_type = float; //<! Defines the wage type in this application.
+using matrix_type = float;
 using set_of_numbers_type = std::vector< number_type >;
 
 class KenoBet
@@ -17,13 +18,20 @@ class KenoBet
 	private:
 		set_of_numbers_type m_spots; //<! The player's bet.
 		cash_type m_wage; 			 //<! The player's wage.
+		matrix_type **m_matrix;
 	
 	public:
 		size_t rounds; 		 //<! Number of times to play.
 
 		//! Creates an empty Keno bet.
 		KenoBet() : m_wage(0), rounds(1)
-		{ /* empty */ };
+		{
+			m_matrix = new *matrix_type[15];
+			for(auto i{0u}; i < 15; ++i)
+			{
+				m_matrix[i] = new matrix_type[i+2];
+			}
+		};
 
 		/*! 
 		 * @brief Adds a number to the spots only if the number is not already there.
@@ -69,7 +77,6 @@ class KenoBet
 		set_of_numbers_type get_spots( void ) const;
 
 };
-
 
 #endif
 
