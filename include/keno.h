@@ -34,9 +34,8 @@ class KenoBet
 		/*! 
 		 * @brief Sets the amount of money the player is betting.
 		 * @param wage_ The wage.
-		 * @return True if we have a wage above zero; false otherwise. 
 		 */
-		bool set_wage( cash_type wage_ );
+		void set_wage( cash_type wage_ );
 
 		//!
 		// @brief Resets a bet to an empty state.
@@ -72,5 +71,3 @@ class KenoBet
 
 
 #endif
-
-

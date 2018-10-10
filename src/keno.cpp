@@ -14,10 +14,9 @@ bool KenoBet::add_number( number_type spot_ )
 	return true;
 }
 
-bool KenoBet::set_wage( cash_type wage_ )
+void KenoBet::set_wage( cash_type wage_ )
 {
 
-	return true;
 }
 
 void KenoBet::reset( void )
@@ -32,6 +31,7 @@ cash_type KenoBet::get_wage( void ) const
 
 size_t KenoBet::size( void ) const
 {
+
 }
 
 set_of_numbers_type
@@ -44,8 +44,3 @@ set_of_numbers_type KenoBet::get_spots( void ) const
 {
 
 }
-
-
-
-
-
