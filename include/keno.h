@@ -83,6 +83,12 @@ class KenoBet
 		 */
 		set_of_numbers_type get_spots( void ) const;
 
+		/*!
+		 * @brief 
+		 * @return 
+		 */
+		set_of_numbers_type generate_hits( void ) const;
+
 };
 
 

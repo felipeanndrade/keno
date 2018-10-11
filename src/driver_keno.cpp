@@ -73,5 +73,14 @@ int main(int argc, char **argv)
 	}
 	std::cout << "]\n";
 
+	// Generate the random hits
+	set_of_numbers_type random_hits = myGame.generate_hits();
+
+	std::cout << "    The hits are: [ ";
+	for( auto i{0u} ; i < random_hits.size() ; ++i ){
+		std::cout << random_hits[i] << " ";
+	} 
+	std::cout<< "]\n";
+
 	return 0;
 }

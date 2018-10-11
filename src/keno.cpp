@@ -7,10 +7,16 @@
 #include <vector>
 #include <algorithm>
 #include <iterator> // std::swap
+ #include <ctime> // std::time
 
 #include "keno.h"
 
 bool KenoBet::add_number( number_type spot_ ){
+
+	// verify if the current number is in the valid interval
+	if( (spot_ < 1) or (spot_ > 80) ){
+		return false;
+	}
 
 	// verify if the current number already exists in the spots vector
 	for ( int i(0) ; i < std::distance( std::begin(m_spots), std::end(m_spots) ) ; i++ ){
@@ -104,5 +110,32 @@ KenoBet::get_hits( const set_of_numbers_type & hits_ ) const
 set_of_numbers_type KenoBet::get_spots( void ) const {
 
 	return m_spots;
+
+}
+
+set_of_numbers_type KenoBet::generate_hits( void ) const {
+
+	// https://en.cppreference.com/w/cpp/algorithm/random_shuffle
+
+	// vector of hits to be generated
+	set_of_numbers_type random_hits;
+
+	// populate hits vector from 1 to 80
+	for ( int i(0) ; i < 80 ; i++ ){
+		random_hits.push_back(i+1);
+	}
+
+	// seed random number generation
+	std::srand ( unsigned ( std::time(0) ) );
+
+	// apply shuffle to the vector
+	std::random_shuffle ( std::begin(random_hits) , std::end(random_hits) );
+
+	// remove other elements than not the 20 firsts
+	for ( int i(0) ; i < 60 ; i++ ){
+		random_hits.pop_back();
+	}
+
+	return random_hits;
 
 }
