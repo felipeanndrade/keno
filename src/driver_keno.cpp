@@ -82,5 +82,14 @@ int main(int argc, char **argv)
 	} 
 	std::cout<< "]\n";
 
+	// get hits
+	set_of_numbers_type gotten_hits( myGame.get_hits( random_hits ) );
+
+	std::cout << "    The gotten hits are: [ ";
+	for( auto i{0u} ; i < gotten_hits.size() ; ++i ){
+		std::cout << gotten_hits[i] << " ";
+	} 
+	std::cout<< "]\n";
+
 	return 0;
 }

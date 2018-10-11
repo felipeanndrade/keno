@@ -101,9 +101,42 @@ size_t KenoBet::size( void ) const
 {
 }
 
-set_of_numbers_type
-KenoBet::get_hits( const set_of_numbers_type & hits_ ) const
-{
+set_of_numbers_type KenoBet::get_hits( const set_of_numbers_type & random_hits ) const {
+
+	// counter to spots vector
+	int bet_counter(0);
+
+	// counter to random hits vector
+	int random_counter(0);
+
+	// hits vector to return
+	set_of_numbers_type gotten_hits;
+
+	// loop over spots vector
+	while( bet_counter < m_spots.size() ){
+
+		// loop over random hits
+		while( random_counter < random_hits.size() ){
+
+			// if spots vector value is less-than, none of resting random hits values will match
+			if( m_spots[bet_counter] < random_hits[random_counter] ){
+				break;
+			}
+
+			if( m_spots[bet_counter] == random_hits[random_counter] ){
+				gotten_hits.push_back( m_spots[bet_counter] );
+				bet_counter++;
+			}
+
+			random_counter++;
+
+		}
+
+		bet_counter++;
+
+	}
+
+	return gotten_hits;
 
 }
 
