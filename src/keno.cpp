@@ -14,9 +14,12 @@ bool KenoBet::add_number( number_type spot_ )
 	return true;
 }
 
-void KenoBet::set_wage( cash_type wage_ )
+bool KenoBet::set_wage( cash_type wage_ )
 {
-
+	if(wage_ > 0){return m_wage = wage_;}
+	
+	else
+		return false;
 }
 
 void KenoBet::reset( void )
