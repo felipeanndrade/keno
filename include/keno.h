@@ -87,7 +87,7 @@ class KenoBet
 		 * @brief 
 		 * @return 
 		 */
-		set_of_numbers_type generate_hits( void ) const;
+		set_of_numbers_type generate_hits( void );
 
 };
 

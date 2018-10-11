@@ -113,7 +113,7 @@ set_of_numbers_type KenoBet::get_spots( void ) const {
 
 }
 
-set_of_numbers_type KenoBet::generate_hits( void ) const {
+set_of_numbers_type KenoBet::generate_hits( void ) {
 
 	// https://en.cppreference.com/w/cpp/algorithm/random_shuffle
 
@@ -135,6 +135,9 @@ set_of_numbers_type KenoBet::generate_hits( void ) const {
 	for ( int i(0) ; i < 60 ; i++ ){
 		random_hits.pop_back();
 	}
+
+	// apply QuickSort to the vector
+	spots_qsort( random_hits, 0, random_hits.size() );
 
 	return random_hits;
 
