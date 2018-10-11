@@ -24,7 +24,7 @@ And clone this repository, using `git clone <this repo>`
 
 To compile this project move to keno directory and make a `build` directory;
 ```
-mkdir build
+mkdir build 
 ```
 Create a makefile using `cmake`, to manage and build the project;
 ```
@@ -45,8 +45,8 @@ To run the program you'll need a `.dat` bet file, wich have this format
 ---------------
 Lines | Representing
 ----- | -----------
-1500.0 | The player’s initial credit ( IC ), expressed as a real value.
-3	   | The number of rounds ( NR ) the game should run, represented by an integer.
+1500.0 | The player’s initial credit, expressed as a real value.
+3	   | The number of rounds the game should run, represented by an integer.
 21 12 64 | A set of up to 15 unique numbers in any order, separated by at least one white-space.
 
 Any other representation for will be considered a **invalid** bet file.
@@ -62,4 +62,4 @@ At the end of the game will be showed a **sumary** of the money that you spent, 
 
 # Authorship
 
-This project has been developed by [Felipe Andrade](https://github.com/felpsisonfire) & [Marcos Antonio Junior](https://github.com/marcosacj) to the Programming Language I course, from Information Technology bachelor degree of Federal University of Rio Grande do Norte.
+This project has been developed by [Felipe Andrade](https://github.com/felpsisonfire) & [Marcos A. Cavalcanti Junior](https://github.com/marcosacj) to the Programming Language I course, from Information Technology bachelor degree of Federal University of Rio Grande do Norte.
