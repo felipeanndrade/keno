@@ -66,8 +66,6 @@ class KenoBet
 		 * @return The vector< spot_type > with the player's spots picked so far.
 		 */
 		set_of_numbers_type get_spots( void ) const;
-
 };
-
 
 #endif

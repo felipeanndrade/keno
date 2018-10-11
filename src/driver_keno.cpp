@@ -24,10 +24,10 @@ int main(int argc, char **argv)
 
 		if(myGame.set_wage(receiver_wage))
 		{
-			std::cout << "The wage has been set\n";
+			std::cout << "-> The wage has been set\n";
 		}
 		else
-		std::cout << "ERROR\n";	
+		std::cout << "ERROR: invalid wage\n";	
 	}
 
 	return 0;
