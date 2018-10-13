@@ -1,5 +1,5 @@
 /*!
- * @file keno.cpp
+* @file keno.cpp
  * @author Felipe da Silva Andrade & Marcos A. Cavalcanti Junior
  */
 
@@ -81,7 +81,7 @@ void KenoBet::spots_qsort( set_of_numbers_type & spots_vector, int left , int ri
 
 bool KenoBet::set_wage( cash_type wage_ )
 {
-	if(wage_ > 0){return m_wage = wage_;}
+	if(wage_ > 0){return (m_wage = wage_);}
 	
 	else
 		return false;
@@ -95,17 +95,6 @@ void KenoBet::reset( void )
 cash_type KenoBet::get_wage( void ) const
 {
 	return m_wage;
-}
-
-size_t KenoBet::size( void ) const
-{
-
-}
-
-set_of_numbers_type
-KenoBet::get_hits( const set_of_numbers_type & hits_ ) const
-{
-
 }
 
 set_of_numbers_type KenoBet::get_spots( void ) const {
@@ -142,4 +131,9 @@ set_of_numbers_type KenoBet::generate_hits( void ) {
 
 	return random_hits;
 
+}
+
+matrix_type KenoBet::get_payout_t(void) const
+{
+	return m_payout_table;
 }

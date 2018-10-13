@@ -11,13 +11,16 @@
 using number_type = unsigned short int; //<! data type for a keno hit
 using cash_type = float; //<! Defines the wage type in this application.
 using set_of_numbers_type = std::vector< number_type >;
+using matrix_type = std::vector< std::vector< float >>;
 
 class KenoBet
 {
 	private:
 		set_of_numbers_type m_spots; //<! The player's bet.
 		cash_type m_wage; 			 //<! The player's wage.
-
+		size_t m_rounds;		
+		matrix_type m_payout_table;	
+		
 		/*! 
 		 * @brief Apply a partition to the slice [left, right) of spots vector. Used in qsort_spots() function.
 		 * @param spots_vector The spots vector member itself.
@@ -36,9 +39,31 @@ class KenoBet
 		void spots_qsort( set_of_numbers_type & spots_vector, int left , int right );
 
 	public:
+		
 		//! Creates an empty Keno bet.
-		KenoBet() : m_wage(0)
-		{ /* empty */ };
+		KenoBet() : m_wage(0), m_rounds(1)
+		{
+			m_payout_table =
+			{
+			{ 0,   3 }, // 1 spot
+			{ 0,   1,   9 }, // 2 spots
+			{ 0,   1,   2,  16 }, // 3 spots
+			{ 0, 0.5,   2,   6,  12 }, // 4 spots
+			{ 0, 0.5,   1,   3,  15, 50 }, // 5 spots
+			{ 0, 0.5,   1,   2,   3, 30, 75 }, // 6 spots
+			{ 0, 0.5, 0.5,   1,   6, 12, 36, 100 }, // 7 spots
+			{ 0, 0.5, 0.5,   1,   3,  6, 19,  90, 720 }, // 8 spots
+			{ 0, 0.5, 0.5,   1,   2,  4,  8,  20,  80, 1200 }, // 9 spots
+			{ 0,   0, 0.5,   1,   2,  3,  5,  10,  30,  600, 1800 }, // 10 spots
+			{ 0,   0, 0.5,   1,   1,  2,  6,  15,  25,  180, 1000, 3000 }, // 11 spots
+			{ 0,   0,   0, 0.5,   1,  2,  4,  24,  72,  250,  500, 2000, 4000 }, // 12 spots
+			{ 0,   0,   0, 0.5, 0.5,  3,  4,   5,  20,   80,  240,  500, 3000, 6000 }, // 13 spots
+			{ 0,   0,   0, 0.5, 0.5,  2,  3,   5,  12,   50,  150,  500, 1000, 2000,  7500 }, // 14 spots
+			{ 0,   0,   0, 0.5, 0.5,  1,  2,   5,  15,   50,  150,  300,  600, 1200,  2500, 10000 } // 15 spots
+			};
+
+
+		};
 
 		/*! 
 		 * @brief Adds a number to the spots only if the number is not already there.
@@ -63,19 +88,6 @@ class KenoBet
 		 */
 		cash_type get_wage( void ) const;
 
-		/*! 
-		 * @brief Returns to the current number of spots in the player's bet.
-		 * @return Number of spots present in the bet
-		 */
-		size_t size( void ) const;	
-		
-		/*!
-		 * @brief Determine how many spots match the hits passed as argument.
-		 * @param hits_ List of hits randomly chosen by the computer.
-		 * @return An vector with the list of hits. 
-		 */
-		set_of_numbers_type get_hits( const set_of_numbers_type & hits_ ) const;
-
 		/*!
 		 * @brief Return a vector < spot_type > with the spots the player has picked so far.
 		 * @return The vector< spot_type > with the player's spots picked so far.
@@ -87,7 +99,8 @@ class KenoBet
 		 * @return 
 		 */
 		set_of_numbers_type generate_hits( void );
-		
+
+		matrix_type get_payout_t(void) const;	
 };
 
 #endif

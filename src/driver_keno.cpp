@@ -31,11 +31,11 @@ int main(int argc, char **argv)
 	KenoBet myGame;
 
 	std::cout << ">>> Preparing to read the bet file [" << argv[1] << "], please wait...\n";
-	std::cout << std::setw(40) << std::setfill('-') << "" << std::endl;
+	std::cout << std::setw(80) << std::setfill('-') << "" << std::endl;
 
 	// Reading and store the bet in the initialized object
 	cash_type IC; // Initial Cash
-	number_type NR; // Number of Rounds
+	size_t NR; // Number of Rounds
 	number_type spot; // Spot number
 
 	// if the file was successfull opened
@@ -52,23 +52,19 @@ int main(int argc, char **argv)
 			myGame.add_number( spot );
 		}
 
-	} else {
-
-		// implement fail flags
-
 	}
-
 	bet_file.close();
 
+	// Creating the matrix of payout values
+
 	std::cout << ">>> Bet succesfully read!" << std::endl;
-	std::cout << "    You are going to wage a total of " << myGame.get_wage() << " dollars.\n";
-	std::cout << "    Going for a total of " << NR
+	std::cout << "\tYou are going to wage a total of " << myGame.get_wage() << " dollars.\n";
+	std::cout << "\tGoing for a total of " << NR
 			  << " rounds, waging $" << IC/NR
 			  << " per round.\n\n";
 
-	// std::cout << "\t Your bet has 3 numbers. They are: [" << gameSpots << "]\n";
-	std::cout << "    Your bet has " << myGame.get_spots().size() << " numbers. They are: [ ";
-	// std::cout << myGame.get_spots();
+	std::cout << "\tYour bet has " << myGame.get_spots().size() << " numbers. They are: [ ";
+	
 	for( unsigned int i(0) ; i < myGame.get_spots().size() ; i++ ){
 		std::cout << myGame.get_spots()[i] << " ";
 	}
@@ -77,11 +73,36 @@ int main(int argc, char **argv)
 	// Generate the random hits
 	set_of_numbers_type random_hits = myGame.generate_hits();
 
-	std::cout << "    The hits are: [ ";
+	std::cout << "\tThe hits are: [ ";
 	for( auto i{0u} ; i < random_hits.size() ; ++i ){
 		std::cout << random_hits[i] << " ";
 	} 
 	std::cout<< "]\n";
+	std::cout<< "\n\n";
 
+	set_of_numbers_type my_hits;
+
+	for(unsigned int i{0u}; i < myGame.get_spots().size(); ++i)
+	{
+		for(auto j{0u}; j < random_hits.size(); ++j)
+		{		
+			if(myGame.get_spots()[i] == random_hits[j])
+			{
+				my_hits.push_back(myGame.get_spots()[i]); 	
+			}
+		}
+	}	
+
+	std::cout << "\tYou hit the following number(s) [ ";
+	for(auto i{0u}; i < my_hits.size(); ++i)
+	{
+		std::cout<< my_hits[i] << " ";	
+	}
+	std::cout << " ], a total of " << my_hits.size() << " hits out of " 
+			  << myGame.get_spots().size() << "\n";
+
+	std::cout << "\tPayout rate is " << myGame.get_payout_t()[my_hits.size() - 1][myGame.get_spots().size() - 1] 
+			  << " thus you came out with: " << << "\n";
+	
 	return 0;
 }
