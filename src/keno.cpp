@@ -137,3 +137,16 @@ matrix_type KenoBet::get_payout_t(void) const
 {
 	return m_payout_table;
 }
+
+bool KenoBet::set_rounds( number_type rounds_)
+{
+	if(rounds_ > 0) {return (m_rounds = rounds_);}
+
+	else
+		return false;
+}
+
+number_type KenoBet::get_rounds(void) const
+{
+	return m_rounds;
+}

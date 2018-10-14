@@ -77,6 +77,13 @@ class KenoBet
 		 * @param wage_ The wage.
 		 */
 		bool set_wage( cash_type wage_ );
+		
+		/*! 
+		 * @brief Sets the number of rounds.
+		 * @param rounds_ The number of game rounds.
+		 */
+		bool set_rounds( number_type rounds_);
+
 
 		//!
 		// @brief Resets a bet to an empty state.
@@ -88,6 +95,12 @@ class KenoBet
 		 */
 		cash_type get_wage( void ) const;
 
+		/*!
+		 * @brief Retrieves the number of rounds that was described in the bet file.
+		 * @return The number of rounds.
+		 */
+		number_type get_rounds( void ) const;
+		
 		/*!
 		 * @brief Return a vector < spot_type > with the spots the player has picked so far.
 		 * @return The vector< spot_type > with the player's spots picked so far.
