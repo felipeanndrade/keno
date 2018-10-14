@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 	cash_type IC; // Initial Cash
 	size_t NR; // Number of Rounds
 	number_type spot; // Spot number
-	std::vector < float > waging;
+	set_of_numbers_type round_wage;
 
 	// if the file was successfull opened
 	if( bet_file.is_open() ){
@@ -63,6 +63,12 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
+	// For each round we have a wage	
+	for(auto i{0u}; i < NR; ++i)
+	{
+		round_wage.push_back(IC/NR);
+	}
+
 	bet_file.close();
 
 	// Creating the matrix of payout values
@@ -79,22 +85,20 @@ int main(int argc, char **argv)
 	for( unsigned int i(0) ; i < myGame.get_spots().size() ; i++ ){
 		std::cout << myGame.get_spots()[i] << " ";
 	}
-	std::cout << "]\n";
-
+	std::cout << "] ";	
 	// The loop for rounds starts here! 
 	for(auto rounds{1}; rounds <= myGame.get_rounds(); ++rounds )
 	{	
 		// Generating random hits	
 		set_of_numbers_type random_hits = myGame.generate_hits();
 
-		std::cout << "\t\tThis is round #" << rounds << " of " << myGame.get_rounds() 
+		std::cout << "\n\t\tThis is round #" << rounds << " of " << myGame.get_rounds() 
 			  << " and your wage is $" << /* round wage */ " Good luck!\n";	
 		std::cout << "\t\tThe hits are: [ ";
 		for( auto i{0u} ; i < random_hits.size() ; ++i ){
 			std::cout << random_hits[i] << " ";
 		} 
 		std::cout<< "]\n";
-		std::cout<< "\n\n";
 
 		set_of_numbers_type my_hits;
 
@@ -118,10 +122,14 @@ int main(int argc, char **argv)
 			  << myGame.get_spots().size() << "\n";
 		
 		// The index of the matrix is sub by one, because the sizes doesn't begins in 0, as the matrix index
-		std::cout << "\t\tPayout rate is " << myGame.get_payout_t()[my_hits.size() - 1][myGame.get_spots().size() - 1] 
+		std::cout << "\t\tPayout rate is " << myGame.get_payout_t()[myGame.get_spots().size() - 1][my_hits.size()  - 1] 
 				  << " thus you came out with: "  
-				  << myGame.get_wage() * myGame.get_payout_t()[my_hits.size() - 1][myGame.get_spots().size() - 1] << "\n";
-	}
+				  << round_wage[rounds] * myGame.get_payout_t()[myGame.get_spots().size() - 1][my_hits.size()  - 1]<< "\n";
+		std::cout << "\t\tYour net balance so far is: $" << " dolars.\n";
+		
+		std::cout << "\t\t"  << std::setw(80) << std::setfill('-') << "" << std::endl;
 
+	}
+		
 	return 0;
 }
