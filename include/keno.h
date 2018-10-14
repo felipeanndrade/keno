@@ -85,10 +85,6 @@ class KenoBet
 		bool set_rounds( number_type rounds_);
 
 
-		//!
-		// @brief Resets a bet to an empty state.
-		void reset( void );
-
 		/*!
 		 * @brief Retrieves the player's wage on this bet.
 		 * @return The wage value.
@@ -108,11 +104,16 @@ class KenoBet
 		set_of_numbers_type get_spots( void ) const;
 
 		/*!
-		 * @brief 
-		 * @return 
+		 * @brief Generate a vector of random numbers 
+		 * sorted in a range (1, 80) in order to compare with players bet 
+		 * @return Vector with random numbers 
 		 */
 		set_of_numbers_type generate_hits( void );
 
+		/*!
+		 * @brief A function to access the values of payout table
+		 * @return A vector with the payout values
+		 */
 		matrix_type get_payout_t(void) const;	
 };
 

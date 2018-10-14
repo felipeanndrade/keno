@@ -87,11 +87,6 @@ bool KenoBet::set_wage( cash_type wage_ )
 		return false;
 }
 
-void KenoBet::reset( void )
-{
-
-}
-
 cash_type KenoBet::get_wage( void ) const
 {
 	return m_wage;
