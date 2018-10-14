@@ -37,8 +37,8 @@ int main(int argc, char **argv)
 	cash_type IC; // Initial Cash
 	size_t NR; // Number of Rounds
 	number_type spot; // Spot number
-	set_of_numbers_type round_wage;
-
+	cash_type net_balance; // Net balance for each round.	
+	
 	// if the file was successfull opened
 	if( bet_file.is_open() ){
 		
@@ -64,11 +64,6 @@ int main(int argc, char **argv)
 	}
 
 	// For each round we have a wage	
-	for(auto i{0u}; i < NR; ++i)
-	{
-		round_wage.push_back(IC/NR);
-	}
-
 	bet_file.close();
 
 	// Creating the matrix of payout values
@@ -86,6 +81,10 @@ int main(int argc, char **argv)
 		std::cout << myGame.get_spots()[i] << " ";
 	}
 	std::cout << "] ";	
+
+
+	net_balance = myGame.get_wage();	
+
 	// The loop for rounds starts here! 
 	for(auto rounds{1}; rounds <= myGame.get_rounds(); ++rounds )
 	{	
@@ -93,7 +92,7 @@ int main(int argc, char **argv)
 		set_of_numbers_type random_hits = myGame.generate_hits();
 
 		std::cout << "\n\t\tThis is round #" << rounds << " of " << myGame.get_rounds() 
-			  << " and your wage is $" << /* round wage */ " Good luck!\n";	
+			  << " and your wage is $" << myGame.get_wage() / myGame.get_rounds() <<" Good luck!\n";	
 		std::cout << "\t\tThe hits are: [ ";
 		for( auto i{0u} ; i < random_hits.size() ; ++i ){
 			std::cout << random_hits[i] << " ";
@@ -112,7 +111,9 @@ int main(int argc, char **argv)
 				}
 			}
 		}	
-
+		
+		net_balance -= myGame.get_wage()/myGame.get_rounds();	
+		
 		std::cout << "\t\tYou hit the following number(s) [ ";
 		for(auto i{0u}; i < my_hits.size(); ++i)
 		{
@@ -124,12 +125,24 @@ int main(int argc, char **argv)
 		// The index of the matrix is sub by one, because the sizes doesn't begins in 0, as the matrix index
 		std::cout << "\t\tPayout rate is " << myGame.get_payout_t()[myGame.get_spots().size() - 1][my_hits.size()  - 1] 
 				  << " thus you came out with: "  
-				  << round_wage[rounds] * myGame.get_payout_t()[myGame.get_spots().size() - 1][my_hits.size()  - 1]<< "\n";
-		std::cout << "\t\tYour net balance so far is: $" << " dolars.\n";
+				  << myGame.get_wage()/myGame.get_rounds() *myGame.get_payout_t()[myGame.get_spots().size() - 1][my_hits.size()  - 1]
+				  << "\n";
+	
+		// Add to the net balance the value owned in this round
+		net_balance += (myGame.get_wage()/myGame.get_rounds()) * (myGame.get_payout_t()[myGame.get_spots().size() - 1][my_hits.size()  - 1]); 
 		
-		std::cout << "\t\t"  << std::setw(80) << std::setfill('-') << "" << std::endl;
+		std::cout << "\t\tYour net balance so far is: $" << net_balance <<" dolars.\n";
+		
+		std::cout << "\t\t" << std::setw(80) << std::setfill('-') << "" << std::endl;
 
 	}
-		
+	std::cout << ">>> End of rounds!\n";	
+	std::cout << std::setw(80) << std::setfill('-') << "" << std::endl;
+	
+
+	// Sumary!
+	std::cout << ">>> You spent in this game a total of $1500 dollars.\n";
+	std::cout << ">>> Hooray, you won $" << net_balance - myGame.get_wage() << " dollars. See you next time! ;-)\n";	
+	std::cout << ">>> You are leaving the Keno table with $" << net_balance << " dollars.\n";
 	return 0;
 }
