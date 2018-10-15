@@ -159,7 +159,8 @@ set_of_numbers_type KenoBet::generate_hits( void ) {
 	}
 
 	// seed random number generation
-	std::srand ( unsigned ( std::time(0) ) );
+	std::random_device rd;
+	std::srand ( rd() );
 
 	// apply shuffle to the vector
 	std::random_shuffle ( std::begin(random_hits) , std::end(random_hits) );
